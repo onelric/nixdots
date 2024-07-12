@@ -1,0 +1,1 @@
+launch sh -c "wf-recorder -g \"$(slurp)\" -f ~/$(date +%Y-%m-%d_%H-%m-%s).mkv"

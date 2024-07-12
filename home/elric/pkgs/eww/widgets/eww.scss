@@ -1,0 +1,169 @@
+$darkbg: #151515;
+$bg: #191919;
+$fg: #e8e3e3;
+$red: #b66467;
+$yellow: #d9bc8c;
+$green: #8c977d;
+$cyan: #8aa6a2;
+$blue: #8da3b9;
+$magenta: #a988b0;
+$border-rad: 10px;
+
+* {
+  all: unset;
+}
+
+.menu {
+    background: $darkbg;
+    border: 5px solid;
+    border-color: $bg;
+    border-radius: 15px;
+    font-family: "MapleMono SC NF";
+    color: $fg;
+    padding: 0px 5px 15px 5px;
+    font-style: italic;
+}
+
+.menu-widget {
+    margin: 0px 7px 0px 7px;
+}
+
+////////////////////// PLAYER CTL /////////////////////
+.playerctl-box {
+    background: $bg;
+    border-radius: $border-rad;
+    margin: 7px 10px;
+    padding: 13px;
+}
+
+.playerctl-slider trough highlight {
+    background-color: $red;
+    border-radius: $border-rad;
+}
+
+.playerctl-artist-label {
+    color: $red;
+}
+
+.playerctl-button {
+    padding: 6px 10px;
+}
+
+.playerctl-track-info {
+    margin-bottom: 5px;
+}
+
+.playerctl-pause-label {
+    font-size: 10px;
+}
+
+.playerctl-next-previous-label {
+    font-size: 12px;
+}
+////////////////////////// PROFILE BOX /////////////////
+
+.top-box {
+    margin: 20px 0px 5px 0px;
+}
+
+.profile-box {
+    border-radius: $border-rad;
+    background: $bg;
+    margin: 0px 10px;
+}
+
+// PROFILE
+.user-name {
+    font-size: 15px;
+}
+
+.profile-picture {
+    border-radius: 50%;
+    background-size: 100%;
+    background-position: 50% 50%;
+    background-image: url("/home/elric/.config/eww/profile_picture.jpg");
+
+    margin: 10px 25px;
+    padding: 0px 30px 0px 30px;
+}
+
+////////////////////////////// QUICK ACCESS BUTTONS ///////////////////////////
+.profile-button-box {
+    margin-left: 25px;
+}
+
+button {
+    background: $darkbg;
+    border: none;
+    border-radius: $border-rad;
+    font-size: 20px;
+    padding: 5px 13px;
+}
+
+.power-button, .logout-button, .settings-button {
+    margin-bottom: 10px;
+}
+
+button:hover {
+    transition: all 0.1s ease-in-out;
+    background-color: #0f0f0f;
+}
+
+.power-button-label {
+    color: $red;
+}
+
+.settings-button-label {
+    color: $blue;
+    font-size: 20px;
+}
+
+.logout-button-label {
+    font-size: 20px;
+    color: $green;
+}
+
+
+///////////////////////// SLIDER CONTROL CENTRE /////////////////////////
+.battery-box {
+    background-color: $bg;
+    border-radius: $border-rad;
+    margin: 7px 10px;
+    padding: 13px;
+}
+
+.control-box {
+    background-color: $bg;
+    border-radius: $border-rad;
+    margin: 0px 10px 0px 10px;
+    padding: 13px;
+}
+
+.volume-label, .backlight-label, .battery-label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+scale trough {
+    all: unset;
+    background-color: $darkbg;
+    border-radius: $border-rad;
+    min-height: 25px;
+    min-width: 60px;
+}
+
+.volume-slider trough highlight {
+    background-color: $blue;
+    border-radius: $border-rad;
+}
+
+.backlight-slider trough highlight {
+    background-color: $yellow;
+    border-radius: $border-rad;
+}
+
+.battery-slider trough highlight {
+    background-color: $green;
+    border-radius: $border-rad;
+}
