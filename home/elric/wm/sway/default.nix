@@ -29,6 +29,8 @@
     brightnessctl
     playerctl
     pamixer
+
+    jq
   ];
 
   wayland.windowManager.sway = {
