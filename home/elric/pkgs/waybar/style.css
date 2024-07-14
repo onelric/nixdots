@@ -6,10 +6,10 @@
     border-radius: 15px;
 }
 
-window#waybar > box {
+window#waybar>box {
     border-radius: 15px;
     margin: 18px 8px 18px 0px;
-    background-color: rgba(21,21,21,0.98);
+    background-color: rgba(21, 21, 21, 0.98);
     box-shadow: 3px 3px 4px 1px #101010;
 }
 
@@ -25,7 +25,7 @@ tooltip {
     font-style: italic;
     padding: 24px;
     border-radius: 6px;
- }
+}
 
 #custom-icon {
     padding-top: 10px;
@@ -35,14 +35,14 @@ tooltip {
 }
 
 #custom-seperator {
-    color: #333333;
+    color: #303030;
     margin-bottom: 10px;
 }
 
 #workspaces button {
     padding: 10px 0px 10px 0px;
     border-radius: 10px;
-    color: #e8e3e3;
+    color: #303030;
     font-size: 20px;
     transition: margin 250ms ease;
 }
@@ -56,7 +56,11 @@ tooltip {
     color: #b66467;
 }
 
-#clock, #battery, #backlight, #network, #pulseaudio {
+#clock,
+#battery,
+#backlight,
+#network,
+#pulseaudio {
     padding: 12px;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -67,7 +71,8 @@ tooltip {
     color: #E8E3E3;
 }
 
-#battery.charging, #battery.plugged {
+#battery.charging,
+#battery.plugged {
     color: #e8e3e3;
 }
 
@@ -83,4 +88,3 @@ label:focus {
 #pulseaudio.muted {
     color: #b66467;
 }
-
