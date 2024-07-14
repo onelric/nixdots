@@ -5,6 +5,7 @@ let
     v = "nvim";
     y = "yazi";
     cat = "bat --theme=base16";
+    img = "kitten icat --hold";
 
     ls  = "eza $eza_params";
     l   = "eza --git-ignore $eza_params";
@@ -40,10 +41,11 @@ in
     initExtra = "
       export PATH=/home/elric/.cargo/bin/:$PATH\n
       export XDG_RUNTIME_DIR=/run/user/$(id -u)\n
+      export RUST_SRC_PATH=\"${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}\"\n
       bindkey -M viins 'kj' vi-cmd-mode\n
       bindkey -M viins 'jk' vi-cmd-mode\n
       VI_MODE_SET_CURSOR=true\n
-      catnip -s'~>' -c 'blue,red,yellow,green'\n
+      catnip -s'~>' -c 'blue,red,yellow,green' --file cat\n
     ";
   };
 
