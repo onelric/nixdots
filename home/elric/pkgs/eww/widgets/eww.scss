@@ -25,7 +25,7 @@ $border-rad: 10px;
 }
 
 .menu-widget {
-    margin: 0px 7px 0px 7px;
+    margin: 0px 7px 7px 7px;
 }
 
 ////////////////////// PLAYER CTL /////////////////////
@@ -92,12 +92,24 @@ $border-rad: 10px;
     margin-left: 25px;
 }
 
-button {
+.power-button, .logout-button, .settings-button, .playerctl-button {
     background: $darkbg;
     border: none;
     border-radius: $border-rad;
     font-size: 20px;
     padding: 5px 13px;
+}
+
+.playerctl-button {
+    border-radius: 10px;
+}
+
+.playerctl-label-button:hover {
+    border-radius: 8px;
+    background-color: $bg;
+}
+.playerctl-label-button {
+    border-radius: 8px;
 }
 
 .power-button, .logout-button, .settings-button {
@@ -106,7 +118,7 @@ button {
 
 button:hover {
     transition: all 0.1s ease-in-out;
-    background-color: #0f0f0f;
+    background-color: #101010;
 }
 
 .power-button-label {

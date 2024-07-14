@@ -32,7 +32,6 @@
 (defpoll playerctl-track-progress-label :interval "1s" "playerctl --player=spotify position --format '{{ duration(position) }}'")
 
 (defwidget menu_widget[]
-    (revealer :reveal "true" :transition "crossfade" :duration "1s"
     (eventbox :onhoverlost "~/.config/eww/scripts/popup.sh" 
         (box :orientation "v" :class "menu-widget" :space-evenly "false"
             (box
@@ -72,10 +71,11 @@
                     :orientation "h" 
                     :space-evenly "true"
 
-                    (box :orientation "v"
-                        (label :text playerctl-artist :class "playerctl-artist-label")
-                        (label :text playerctl-title :class "playerctl-track-label")
-                    )
+                    (button :class "playerctl-label-button" :onclick "sh -c '~/nixdots/home/elric/wm/sway/scripts/switch_workspace.sh Spotify'"
+                        (box :orientation "v"
+                            (label :text playerctl-artist :class "playerctl-artist-label")
+                            (label :text playerctl-title :class "playerctl-track-label")
+                        ))
 
                     (box :halign "end" :spacing 7 :valign "center"
                         (button :onclick "playerctl --player=spotify previous" :class "playerctl-button" (label :text "" :class "playerctl-next-previous-label"))
@@ -145,5 +145,5 @@
                     :value current-battery)
             )
         )
-    ))
+    )
 )
