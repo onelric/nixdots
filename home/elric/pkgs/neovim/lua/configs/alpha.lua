@@ -72,11 +72,11 @@ require 'alpha'.setup {
             type = 'group',
             val = {
                 { type = 'text', val = '~ 迅速なアクセス ~', opts = { hl = 'AlphaQuote', position = 'center' } },
+                button("e", "", "Open Files", "Neotree toggle"),
                 button("f", "", "Find File", "Telescope find_files"),
-                button("o", "", "Recent File", "Telescope oldfiles"),
+                button("o", "", "Recent File", "Telescope oldfiles"),
                 button("c", "", "Configuration", "e ~/.config/nvim/"),
-                button("s", "", "Packer Sync", "PackerSync"),
-                button("q", "", "Quit NeoVim", "qa!"),
+                button("q", "", "Quit NeoVim", "qa!"),
             },
             opts = { hl = 'AlphaButtons', spacing = 1 }
         },
@@ -88,7 +88,7 @@ require 'alpha'.setup {
         { type = 'padding', val = 1 },
         {
             type = 'text',
-            val = '♥',
+            val = '󱄅',
             opts = { hl = 'AlphaHeader', position = 'center' }
         },
         { type = 'padding', val = 3 }

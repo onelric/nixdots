@@ -3,17 +3,17 @@ local color = GET_PARADISE_COLORS()
 local lualine = require('lualine')
 
 local colors = {
-    darkbg    = color.base00,
-    bg        = color.base00,
-    fg        = color.base07,
-    gray      = color.base04,
-    darkgray  = color.base03,
-    yellow    = color.base09,
-    green     = color.base0B,
-    violet    = color.base0E,
-    blue      = color.base0D,
-    bluegreen = color.base0C,
-    red       = color.base08,
+    darkbg   = color.base00,
+    bg       = color.base00,
+    fg       = color.base07,
+    gray     = color.base04,
+    darkgray = color.base03,
+    yellow   = color.base09,
+    green    = color.base0B,
+    violet   = color.base0E,
+    blue     = color.base0D,
+    cyan     = color.base0C,
+    red      = color.base08,
 }
 
 local config = {
@@ -37,7 +37,7 @@ local function get_mode_color()
         V = colors.violet,
         c = colors.red,
         t = colors.red,
-        R = colors.bluegreen,
+        R = colors.cyan,
         ['^V'] = colors.violet
     }
     return { fg = mode_color[vim.fn.mode()], bg = colors.darkbg, gui = 'italic' }
@@ -83,7 +83,7 @@ ins_left({
 -- Diagnostics module
 ins_left({
     'diagnostics',
-    symbols = { error = ' ', warn = '  ', hint = '  ' },
+    symbols = { error = ' ', warn = '  ', hint = ' 󰌵 ' },
     sections = { 'error', 'warn', 'hint' },
     sources = { 'nvim_diagnostic', 'nvim_lsp' },
     always_visible = false,

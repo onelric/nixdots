@@ -30,10 +30,11 @@ for k, v in pairs(options) do
 end
 
 -- Supported languages for auto formatting
-local format_lang = { '*.cpp', '*.hpp', '*.c', '*.h', '*.lua', '*.rs', '*.py', '*.json', '*.md', '*.txt' }
+local format_lang = { '*.cpp', '*.hpp', '*.c', '*.h', '*.lua', '*.rs', '*.css', '*.nix', '*.py', '*.json', '*.md',
+    '*.txt' }
 
 -- Replace vertical split char
---vim.cmd('set fillchars+=vert:▐')
+vim.cmd('set fillchars+=vert:▐')
 
 -- Map vim notifications to use the notify plugin
 vim.notify = require("notify")

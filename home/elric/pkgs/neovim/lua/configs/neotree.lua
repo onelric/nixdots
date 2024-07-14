@@ -1,7 +1,7 @@
 local git_icons = {
     --unstaged  = "",
     --unstaged  = "󰧟",
-    unstaged  = "󰰐",
+    unstaged  = "",
     staged    = "",
     unmerged  = "",
     renamed   = "",

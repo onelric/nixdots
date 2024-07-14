@@ -41,9 +41,20 @@ cmp.setup({
     },
 
     window = {
-        completion    = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
+        -- completion    = cmp.config.window.bordered(),
+        -- documentation = cmp.config.window.bordered(),
+        documentation = {
+            border = 'shadow',
+            scrollbar = true,
+            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+        },
+        completion    = {
+            border = 'shadow',
+            scrollbar = true,
+            winhighlight = "CursorLine:PmenuSel,Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+        }
     },
+
 
     snippet = {
         expand = function(args)

@@ -4,7 +4,7 @@
   home.packages = with pkgs; [
     lua-language-server
     vscode-langservers-extracted
-    rust-analyzer
+    # rust-analyzer
   ];
 
   programs.neovim = {
@@ -76,6 +76,7 @@
       rust-vim
 
       (nvim-treesitter.withPlugins (p: [
+        p.tree-sitter-vimdoc
         p.tree-sitter-nix
         p.tree-sitter-lua
         p.tree-sitter-bash
@@ -86,6 +87,7 @@
         p.tree-sitter-cpp
         p.tree-sitter-yuck
         p.tree-sitter-html
+        p.tree-sitter-rasi
       ]))
     ];
   };

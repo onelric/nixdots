@@ -14,7 +14,7 @@ local function hl_italic(highlight)
 end
 
 
---hl_italic("BufferLineWarningSelected")
+hl("VertSplit", c.base01)
 
 -- Alpha
 hl("AlphaHeader", c.base08)
@@ -80,7 +80,6 @@ hl("NeoTreeGitUnstaged", c.base04)
 hl("NeoTreeNormal", nil, c.base000)
 hl("NeoTreeNormalNC", nil, c.base000)
 hl("NeoTreeCursorLine", nil, c.base00)
-hl("NeoTreeVertSplit", c.base08, c.base08)
 hl_italic("NeoTreeCursorLine")
 
 -- Bufferline
@@ -99,13 +98,16 @@ hl("TelescopePromptNormal", nil, c.base00)
 hl("TelescopeNormal", nil, c.base00)
 
 -- Menues
-hl("Pmenu", nil, c.base00)
-hl("PmenuSbar", nil, c.base01)
-hl("PmenuThumb", nil, c.base01)
-hl("PmenuSel", nil, c.base02)
+hl("Pmenu", nil, c.base000)
+hl("PmenuSbar", nil, c.base000)
+hl("PmenuThumb", nil, c.base000)
+hl("PmenuSel", nil, c.base01)
+hl_italic("PmenuSel")
 
 -- CMP
+hl("CmpNormal", c.base000)
 hl("CmpItemAbbrMatch", c.base0D)
+hl_italic("CmpItemAbbrMatch")
 hl("CmpItemAbbrMatchFuzzy", c.base0D)
 hl("CmpItemAbbr", c.base04)
 hl("CmpItemKind", c.base0E)
@@ -121,6 +123,5 @@ hl("CursorLineNR")
 hl("LineNr", c.base03)
 
 -- Others
-hl("NormalFloat", nil, c.base00)
-hl("FloatBorder", c.base05, c.base00)
-hl("VertSplit", c.base000)
+hl("NormalFloat", nil, c.base000)
+hl("FloatBorder", c.base000, c.base000)
