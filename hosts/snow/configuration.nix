@@ -47,7 +47,7 @@
     wget
     git
     git-crypt
-    cargo
+    rustup
     gcc
   ];
 
