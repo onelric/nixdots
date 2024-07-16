@@ -72,7 +72,7 @@ require 'alpha'.setup {
             type = 'group',
             val = {
                 { type = 'text', val = '~ 迅速なアクセス ~', opts = { hl = 'AlphaQuote', position = 'center' } },
-                button("e", "", "Open Files", "Neotree toggle"),
+                button("e", "", "Open Files", "Neotree toggle"),
                 button("f", "", "Find File", "Telescope find_files"),
                 button("o", "", "Recent File", "Telescope oldfiles"),
                 button("c", "", "Configuration", "e ~/.config/nvim/"),

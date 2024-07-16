@@ -67,9 +67,9 @@
     "battery": {
         "format-full": "{icon}\n{capacity}%",
         "format": " <span color='#b66467' size='x-large'>{icon}</span>\n{capacity}%",
-        "format-charging": " <span color='#b66467' size='x-large'>󱐌</span>\n{capacity}%",
+        "format-charging": " <span color='#b66467' size='x-large'>󰂄</span>\n{capacity}%",
         "format-plugged": " <span color='#b66467' size='x-large'>{icon}</span>\n{capacity}%",
-        "format-icons": ["<span color='#8aa6a2'>󰁺</span>", "󰁼", "󰁾", "󰂀", "󰂂"],
+        "format-icons": ["<span color='#8aa6a2'>󰁺</span>", "<span color='#8aa6a2'>󰁻</span>", "󰁼", "󰁼", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂"],
         "tooltip-format": "Estimated time left on {capacity}% is {time}"
     },
     "network": {

@@ -31,6 +31,7 @@
     unzip
     python3
     zscroll
+    nh
   ];
 
   home.sessionVariables = {

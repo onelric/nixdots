@@ -11,8 +11,8 @@ local git_icons = {
 }
 
 local folder_icons = {
-    default      = "",
-    open         = "",
+    default      = "",
+    open         = "",
     empty        = "",
     empty_open   = "",
     symlink      = "",

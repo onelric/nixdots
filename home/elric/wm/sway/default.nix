@@ -102,7 +102,7 @@
         "${mod}+Return" = "exec ${term}";
         "${mod}+d" = "exec ${rofi}";
         "${mod}+s" = "exec grim -t png -g \"$(slurp)\" ~/$(date +%Y-%m-%d_%H-%m-%s).png";
-        "${mod}+Shift+s" = "exec ~/.config/home-manager/pkgs/kitty/sessions/screenrecord.sh";
+        "${mod}+Shift+s" = "exec ~/nixdots/home/elric/pkgs/kitty/sessions/screenrecord.sh";
 
         "${mod}+Shift+q" = "kill";
         "${mod}+Shift+c" = "reload";

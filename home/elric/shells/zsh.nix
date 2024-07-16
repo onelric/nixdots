@@ -45,7 +45,7 @@ in
       bindkey -M viins 'kj' vi-cmd-mode\n
       bindkey -M viins 'jk' vi-cmd-mode\n
       VI_MODE_SET_CURSOR=true\n
-      catnip -s'~>' -c 'blue,red,yellow,green' --file cat\n
+      catnip --file Documents/cat --info 'user,os,wm,pkgs' --color 'magenta,blue,red,yellow' --padding 2 --seperator '~>'\n
     ";
   };
 

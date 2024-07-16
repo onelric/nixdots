@@ -68,8 +68,8 @@ hl("DiagnosticSignInfo", c.base04)
 hl("EndOfBuffer", c.base00)
 
 -- NeoTree
-hl("NeoTreeDirectoryIcon", c.base0A)
-hl("NeoTreeDirectoryName", c.base05)
+hl("NeoTreeDirectoryIcon", c.base0D)
+hl("NeoTreeDirectoryName", c.base0D)
 hl("NeoTreeGitModified", c.base0E)
 hl("NeoTreeGitAdded", c.base0B)
 hl("NeoTreeGitDeleted", c.base08)

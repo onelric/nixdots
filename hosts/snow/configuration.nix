@@ -42,6 +42,10 @@
     extraGroups = [ "wheel" "audio" "video" ];
   };
 
+  environment.sessionVariables = {
+    FLAKE = "/home/elric/nixdots/";
+  };
+
   environment.systemPackages = with pkgs; [
     vim 
     wget
