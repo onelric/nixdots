@@ -29,6 +29,7 @@ local icons = {
 }
 
 
+
 cmp.setup({
     mapping = {
         ['<C-k>']     = cmp.mapping.scroll_docs(-4),
@@ -68,7 +69,7 @@ cmp.setup({
     }, {
         { name = 'buffer' },
         { name = 'path' },
-    }),
+    }, { max_item_count = 7 }),
 
 
     formatting = {

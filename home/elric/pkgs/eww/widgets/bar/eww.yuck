@@ -1,0 +1,109 @@
+(defwindow bar 
+        :monitor 0
+        :geometry (geometry :x "5px" :y "5px"
+                            :width "99%" :height "38px"
+                            :anchor "top center")
+        :stacking "bottom"
+        :exclusive true
+        :focusable false
+        (bar)
+)
+
+(defwidget playerctl[]
+    (box :space-evenly "false" :orientation "h" :valign "center" :class "module"
+        (label :text "" :class "bar-player-icon")
+        (revealer :transition "slideleft" :reveal playerctl-isplaying :duration "250ms"
+            (box :space-evenly "false"
+                (label :text "${playerctl-title}" :class "playerctl-title-bar")
+                (label :text "~" :class "bar-player-seperator")
+                (label :text "${playerctl-artist}" :class "playerctl-artist-bar")
+            )
+        )
+    )
+)
+
+(defwidget time[]
+    (box :class "module" :space-evenly "false"
+        (label :text "󰥔" :class "bar-clock-icon")
+        (label :text "${hour}:${min}:${sec}")
+    )
+)
+
+(defwidget date[]
+    (box :class "module" :valign "center" :space-evenly "false"
+        (label :text "󰃵" :class "bar-calendar-icon")
+        (label :text "${day} ${month} ${year}")
+    )
+)
+
+(defwidget sound[]
+    (box :class "module" :space-evenly "false"
+        (label :class "bar-volume-icon" :halign "start" :text volume-level-icon)
+        (scale 
+            :class "bar-volume-scale"
+            :hexpand "true"
+            :min "0" :max "101"
+            :onchange "pamixer --set-volume {}"
+            :halign "end"
+            :valign "center"
+            :value current-volume)
+        )
+)
+
+(defwidget info-collection[]
+    (box :space-evenly "false" :orientation "h" :valign "center" :class "module" :spacing 8
+        (circular-progress 
+            :class "bar-circle-progress-battery"
+            :hexpand true
+            :vexpand true
+            :thickness 3
+            :start-at 25
+            :value current-battery  
+            (label :class "bar-circle-progress-label" :text "•")
+        )
+        (circular-progress 
+            :class "bar-circle-progress-brightness"
+            :hexpand true
+            :vexpand true
+            :thickness 3
+            :start-at 25
+            :value current-brightness  
+            (label :class "bar-circle-progress-label" :text "•")
+        )
+    )
+)
+
+
+
+(defwidget wifi[]
+    (box :orientation "h" :space-evenly "false" :valign "center" :class "module"
+        (label :class "bar-network-icon" :text network-status)
+
+        (revealer :transition "slideleft" :reveal network-isconnected :duration "250ms"
+            (label :class "bar-network-ssid" :text network-ssid)
+        )
+    )
+)
+
+(defwidget bar[]
+    (box :space-evenly "true"
+        :orientation "h"
+        :class "bar"
+
+        (box :class "left-modules" :halign "start" :space-evenly "false"
+            (label :class "bar-control-centre" :text "")
+            (box :orientation "h" (info-collection))
+            (box (sound))
+        )
+
+        (box :class "center-modules" :halign "center"
+            (box :space-evenly "false" :orientation "h" (playerctl))
+        )
+
+        (box :class "right-modules" :halign "end" :space-evenly "false"
+            (box :space-evenly "false" :orientation "h" :halign "end" (time))
+            (box :space-evenly "false" :orientation "h" :halign "end" (date))
+            (box :space-evenly "false" :orientation "h" :halign "end" (wifi))
+        )
+    )
+)

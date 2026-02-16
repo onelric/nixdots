@@ -1,7 +1,7 @@
 local lsp = require('lspconfig')
 
 local on_attach = function(client)
-    require('completion').on_attach(client)
+    -- require('completion').on_attach(client)
 end
 
 -- ---- Ccls ----
@@ -39,6 +39,28 @@ lsp.rust_analyzer.setup({
     }
 })
 
+-- This shit does not work or do anything
+lsp.lua_ls.setup {
+    settings = {
+        Lua = {
+            runtime = {
+                version = 'LuaJIT',
+            },
+            diagnostics = {
+                globals = { 'love' },
+            },
+            workspace = {
+                library = {
+                    [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+                    [vim.fn.expand('/nix/store/c90gkchwhb6bimq0ziskdn4wv6srmxii-love-11.5')] = true, -- Replace with your actual path
+                },
+            },
+            telemetry = {
+                enable = false,
+            },
+        },
+    },
+}
 local servers = GET_LSP_SERVERS()
 for _, v in ipairs(servers) do
     lsp[v].setup {

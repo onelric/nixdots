@@ -48,7 +48,7 @@ local conditions = {
         return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
     end,
     lsp_running = function()
-        return next(vim.lsp.get_active_clients()) ~= nil
+        return next(vim.lsp.get_clients()) ~= nil
     end
 }
 
@@ -107,7 +107,7 @@ ins_left({
         if filename == '' then
             filename = 'Unnamed Buffer'
         end
-        local max_length = 14
+        local max_length = 16
         local fill
         local left_padding = {}
         local right_padding = {}

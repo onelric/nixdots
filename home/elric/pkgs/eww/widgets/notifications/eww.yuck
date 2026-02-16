@@ -1,0 +1,6 @@
+(defwindow notifications 
+        :monitor 0
+        :geometry (geometry :x "10px" :y "10px"
+                            :anchor "top left")
+        :stacking "overlay"
+        (label :text "hi"))

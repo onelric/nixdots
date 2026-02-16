@@ -67,6 +67,8 @@ mapkey('n', '<leader>gi', 'lua require("goto-preview").goto_preview_implementati
 mapkey('n', '<leader>gr', 'lua require("goto-preview").goto_preview_references()      <CR>')
 mapkey('n', '<leader>gq', 'lua require("goto-preview").close_all_win()                <CR>')
 
+mapkey('n', '<leader>gq', 'lua vim.lsp.buf.code_action() <CR>')
+
 -- Gitsigns
 mapkey('n', '<leader>gg', 'Gitsigns preview_hunk <CR>')
 

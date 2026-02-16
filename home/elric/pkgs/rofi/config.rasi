@@ -1,23 +1,23 @@
 * {
     font: "MapleMono NF 10";
 
-    background: #151515;
+    background: #151515DD;
     foreground: #e8e3e3;
     red:        #b66467;
     yellow:     #d9bc8c;
     green:      #8c977d;
     cyan:       #8aa6a2;
-    blue:       #8da3b9;
+    blue:       #8b6646;
     purple:     #a988b0;
 
     element-spacing: 20px;
     element-margin: 1px;
-    element-border-radius: 9px;
+    element-border-radius: 0px;
     element-padding: 10px;
 
     fg-color: @foreground;
     bg-color: @background;
-    altbg-color: #111111;
+    altbg-color: #111111DD;
     window-padding: 22px;
 }
 
@@ -41,10 +41,9 @@ window {
     transparency: "real";
     width: 385px;
     background-color: @bg-color;
-    border: 5px solid;
-    border-radius: @element-border-radius;
-    border-color: #191919;
+    border: 0px solid;
     padding: @window-padding;
+    border-radius: 10px;
 }
 
 prompt {
@@ -56,7 +55,7 @@ inputbar {
     spacing: 10px;
     background-color: @altbg-color;
     padding: 15px;
-    border-radius: @element-border-radius;
+    border-radius: 4px;
 }
 
 entry {
@@ -87,7 +86,7 @@ element normal.normal {
 }
 
 element alternate.normal {
-	background-color: @bg-color;
+	background-color: transparent;
 	text-color: @fg-color;
 }
 
@@ -99,9 +98,10 @@ element selected.active {
 element selected.normal {
 	background-color: @red;
 	text-color: @bg-color;
+    border-radius: 4px;
 }
 
 message {
-    background-color: red;
+    background-color: @red;
     border: 0px solid;
 }

@@ -32,10 +32,14 @@ end
 local function getGreeting()
     local hour = tonumber(os.date "%H")
     local greetings = {
-        ['morning'] = ' おはよう',
-        ['afternoon'] = 'こんにちは',
-        ['evening'] = 'こんばんは',
-        ['night'] = ' おやすみ'
+        ['morning'] = '󰖚',
+        ['afternoon'] = '󰖙',
+        ['evening'] = '',
+        ['night'] = ' '
+        -- ['morning'] = ' おはよう',
+        -- ['afternoon'] = 'こんにちは',
+        -- ['evening'] = 'こんばんは',
+        -- ['night'] = ' おやすみ'
     }
 
     local current = function()
@@ -75,7 +79,7 @@ require 'alpha'.setup {
                 button("e", "", "Open Files", "Neotree toggle"),
                 button("f", "", "Find File", "Telescope find_files"),
                 button("o", "", "Recent File", "Telescope oldfiles"),
-                button("c", "", "Configuration", "e ~/.config/nvim/"),
+                button("c", "󱄅", "Nix Flake", "Neotree $FLAKE"),
                 button("q", "", "Quit NeoVim", "qa!"),
             },
             opts = { hl = 'AlphaButtons', spacing = 1 }

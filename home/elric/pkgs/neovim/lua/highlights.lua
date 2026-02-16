@@ -125,3 +125,4 @@ hl("LineNr", c.base03)
 -- Others
 hl("NormalFloat", nil, c.base000)
 hl("FloatBorder", c.base000, c.base000)
+hl("WinSeperator", c.base000, c.base000)

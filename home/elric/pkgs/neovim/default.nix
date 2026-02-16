@@ -1,14 +1,8 @@
-{ pkgs, ... }:
-
+{ pkgs, unstable,  ... }:
 {
-  home.packages = with pkgs; [
-    lua-language-server
-    vscode-langservers-extracted
-    # rust-analyzer
-  ];
-
   programs.neovim = {
     enable = true;
+    package = unstable.neovim;
 
     viAlias = true;
     vimAlias = true;
@@ -44,6 +38,8 @@
     ";
 
     plugins = with pkgs.vimPlugins; [
+      vim-pico8-syntax
+      nvim-lsp-notify
       nvim-web-devicons
       alpha-nvim
       which-key-nvim
@@ -88,6 +84,7 @@
         p.tree-sitter-yuck
         p.tree-sitter-html
         p.tree-sitter-rasi
+        p.tree-sitter-python
       ]))
     ];
   };

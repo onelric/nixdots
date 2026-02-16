@@ -5,7 +5,10 @@ let
     v = "nvim";
     y = "yazi";
     cat = "bat --theme=base16";
-    img = "kitten icat --hold";
+    image = "kitten icat --hold";
+    video = "mpv --no-config --fs --no-audio ";
+    vhome = "$EDITOR $FLAKE/home/$USER/";
+    vhost = "$EDITOR $FLAKE/hosts/$HOST/";
 
     ls  = "eza $eza_params";
     l   = "eza --git-ignore $eza_params";
@@ -14,14 +17,16 @@ let
     la  = "eza -lbhHigUmuSa";
     lx  = "eza -lbhHigUmuSa@";
     lt  = "eza --tree $eza_params";
+    cd = "z";
+    ":q" = "echo 'you are not in vim anymore'";
 
     tree = "eza --tree $eza_params";
     gitkey = "wl-copy < ~/.gitkey";
+    labkey = "wl-copy < ~/.labkey";
     push = "gitkey ; git push";
+    labpush = "labkey ; git push";
 
     dog = "echo 'cat'";
-
-    home = "nvim ~/.config/home-manager/";
   };
 in
 {
@@ -45,7 +50,8 @@ in
       bindkey -M viins 'kj' vi-cmd-mode\n
       bindkey -M viins 'jk' vi-cmd-mode\n
       VI_MODE_SET_CURSOR=true\n
-      catnip --file Documents/cat --info 'user,os,wm,pkgs' --color 'magenta,blue,red,yellow' --padding 2 --seperator '~>'\n
+      eval \"$(zoxide init zsh)\"\n
+      fetchnip\n
     ";
   };
 

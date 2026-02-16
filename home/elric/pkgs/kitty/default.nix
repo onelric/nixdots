@@ -37,7 +37,7 @@
       "ctrl+0" = "change_font_size all 0";
     };
     extraConfig = "
-      window_padding_width 8\n
+      window_padding_width 12\n
       modify_font underline_position 3\n
       modify_font underline_thickness 200%
     ";

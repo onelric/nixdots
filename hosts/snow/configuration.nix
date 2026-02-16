@@ -35,29 +35,68 @@
     pulse.enable = true;
   };
 
+  # Define user
   users.users.elric = {
     isNormalUser = true;
     home = "/home/elric";
     description = "elric";
-    extraGroups = [ "wheel" "audio" "video" ];
+    extraGroups = [ "wheel" "audio" "video" "adbusers" ];
   };
 
+  # Set environment variables
   environment.sessionVariables = {
     FLAKE = "/home/elric/nixdots/";
+    LIBVA_DRIVER_NAME = "iHD";
+    DEFAULT_BROWSER = "${pkgs.brave}/bin/brave";
   };
 
+  environment.variables = { ROC_ENABLE_PRE_VEGA = "1"; };
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [
+        intel-compute-runtime
+        intel-media-driver
+        intel-vaapi-driver
+        opencl-headers
+    ];
+  };
+
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = (_: true);
+    };
+  };
+
+  programs.steam.enable = true;
+  programs.nix-ld.enable = true;
+
+  xdg.mime.defaultApplications = {
+    "text/html" = "brave-browser.desktop";
+      "x-scheme-handler/http" = "brave-browser.desktop";
+      "x-scheme-handler/https" = "brave-browser.desktop";
+      "x-scheme-handler/about" = "brave-browser.desktop";
+      "x-scheme-handler/unknown" = "brave-browser.desktop";
+  };
+
+  # Pakagas
   environment.systemPackages = with pkgs; [
+    xdg-utils
+    vaapiIntel
     vim 
     wget
     git
     git-crypt
     rustup
     gcc
+    iwd
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   programs.sway.enable = true;
 
-  system.stateVersion = "24.05";  # Sync with home-manager
+  system.stateVersion = "24.05";
 }
 

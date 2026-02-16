@@ -1,3 +1,4 @@
+local colors = GET_PARADISE_COLORS()
 local git_icons = {
     --unstaged  = "",
     --unstaged  = "󰧟",
@@ -21,12 +22,15 @@ local folder_icons = {
 }
 
 require('neo-tree').setup {
+    vim.api.nvim_set_hl(0, "WinSeparator", { fg = colors.base000, bg = colors.base000 }),
     window = {
         position = "left",
         width = "45",
         mappings = {
             ["a"] = { "add", config = { show_path = "relative" } },
-            ["o"] = { "open", nowait = true }
+            ["o"] = { "open", nowait = true },
+            h = "close_node",
+            l = "open",
         },
     },
     open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
@@ -83,4 +87,15 @@ require('neo-tree').setup {
             hide_hidden = false,
         }
     },
+
+    event_handlers = {
+        {
+            event = "vim_buffer_enter",
+            handler = function()
+                if vim.bo.filetype == "neo-tree" then
+                    vim.cmd("setlocal nonumber")
+                end
+            end,
+        },
+    }
 }

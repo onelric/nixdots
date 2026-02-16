@@ -3,6 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     # Home manager
     home-manager = {
@@ -11,25 +13,33 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager }: 
-  let 
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-
-  in{
-    nixosConfigurations = {
-      snow = nixpkgs.lib.nixosSystem {
+  outputs = { self, nixpkgs, nixpkgs-unstable, neovim-nightly-overlay, home-manager }@inputs: 
+    let 
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+      unstable = import nixpkgs-unstable {
         inherit system;
-        modules = [
-          ./hosts/snow/configuration.nix
+        overlays = [
+          neovim-nightly-overlay.overlays.default
         ];
       };
-    };
-    homeConfigurations = {
-      elric = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ ./home/elric/home.nix ];
+    in{
+      nixosConfigurations = {
+        snow = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./hosts/snow/configuration.nix
+          ];
+        };
+      };
+      homeConfigurations = {
+        elric = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {inherit unstable;};
+          modules = [ 
+            ./home/elric/home.nix 
+          ];
+        };
       };
     };
-  };
 }

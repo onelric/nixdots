@@ -15,7 +15,6 @@ local options = {
     expandtab = true,
     cursorline = true,
     number = true,
-    nu = true,
     relativenumber = true,
     numberwidth = 4,
     wrap = false,
@@ -46,7 +45,7 @@ vim.api.nvim_create_autocmd("BufEnter", { command = 'ColorizerAttachToBuffer', p
 vim.api.nvim_create_autocmd("BufWritePre", { command = 'lua FORMAT_DOCUMENT()', pattern = format_lang })
 
 -- Change relative numbers
-vim.api.nvim_create_autocmd("InsertEnter", { command = 'set norelativenumber', pattern = "*" })
-vim.api.nvim_create_autocmd("InsertLeave", { command = 'set relativenumber', pattern = "*" })
+-- vim.api.nvim_create_autocmd("InsertEnter", { command = 'set norelativenumber', pattern = "*" })
+-- vim.api.nvim_create_autocmd("InsertLeave", { command = 'set relativenumber', pattern = "*" })
 vim.cmd("autocmd BufEnter * if &buftype ==# 'terminal' | stopinsert! | endif")
 vim.cmd('autocmd BufRead,BufNewFile * setlocal signcolumn=yes')

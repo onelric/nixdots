@@ -1,0 +1,89 @@
+* {
+  font-family: "Maple Mono NF";
+  font-size: 13px;
+}
+
+.bar {
+  background: $darkbg;
+  // box-shadow: 4px 4px 15px #00000080;
+  // margin-right: 9px;
+  // margin-bottom: 9px;
+}
+
+.module {
+  // background-color: $bg;
+  margin: 4px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 5px;
+}
+
+.bar-control-centre {
+  font-size: 14px;
+  color: $red;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.bar-player-icon, .bar-calendar-icon, .bar-clock-icon, .bar-volume-icon, .bar-network-icon {
+  font-size: 15px;
+  color: $red;
+  margin-right: 20px;
+}
+
+.bar-clock-icon {
+  margin-top: 2px;
+}
+
+.bar-volume-icon {
+  font-size: 16px;
+}
+
+.bar-circle-progress-battery, .bar-circle-progress-brightness {
+  // padding: 30px;
+  background-color: $extradarkbg;
+}
+
+.bar-circle-progress-battery { 
+  color: $green;
+}
+
+.bar-circle-progress-brightness {
+  color: $yellow;
+}
+
+.bar-circle-progress-label {
+  font-size: 10px;
+  padding: 4px;
+  color: $bg;
+}
+
+.playerctl-artist-bar {
+  font-style: italic;
+  min-width: 135px;
+}
+
+.bar-player-seperator {
+  margin-left: 10px;
+  margin-right: 10px;
+  color: #6a6a6a;
+}
+
+.playerctl-title-bar {
+  min-width: 135px;
+  // color: $blue;
+}
+
+.bar-volume-scale trough {
+    all: unset;
+    background-color: $extradarkbg;
+    border-radius: $border-rad;
+    min-height: 3px;
+    min-width: 100px;
+    border-radius: 3px;
+}
+
+.bar-volume-scale trough highlight {
+    background-color: $red;
+    border-radius: 3px;
+}
