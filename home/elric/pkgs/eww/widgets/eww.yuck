@@ -9,9 +9,9 @@
 (defpoll month :interval "1h" "date '+%b'")
 (defpoll year  :interval "24h" "date '+%Y'")
 
-(defpoll current-volume     :interval "50ms" "pamixer --get-volume")
+(defpoll current-volume     :interval "100ms" "pamixer --get-volume")
 (defpoll volume-level-icon  :interval "250ms" "./scripts/audio_level.sh")
-(defpoll current-brightness :interval "50ms" "brightnessctl -m -d intel_backlight | awk -F, '{print substr($4, 0, length($4)-1)}'")
+(defpoll current-brightness :interval "10ms" "brightnessctl -m -d intel_backlight | awk -F, '{print substr($4, 0, length($4)-1)}'")
 (defpoll current-battery    :interval "30s" "cat /sys/class/power_supply/BAT0/capacity")
 
 (deflisten playerctl-artist :initial "{}" "./scripts/get_song_artist.sh")
