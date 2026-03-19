@@ -2,6 +2,6 @@
 
 {
   home.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "Noto" ]; })
+    nerd-fonts.noto
   ];
 }

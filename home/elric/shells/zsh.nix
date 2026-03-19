@@ -8,7 +8,7 @@ let
     image = "kitten icat --hold";
     video = "mpv --no-config --fs --no-audio ";
     vhome = "$EDITOR $FLAKE/home/$USER/";
-    vhost = "$EDITOR $FLAKE/hosts/$HOST/";
+    vos = "$EDITOR $FLAKE/hosts/$HOST/";
 
     ls  = "eza $eza_params";
     l   = "eza --git-ignore $eza_params";
@@ -43,15 +43,16 @@ in
          "vi-mode"
        ];
     };
-    initExtra = "
+    initContent = "
       export PATH=/home/elric/.cargo/bin/:$PATH\n
+      export NH_FLAKE=/home/elric/nixdots\n
       export XDG_RUNTIME_DIR=/run/user/$(id -u)\n
       export RUST_SRC_PATH=\"${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}\"\n
       bindkey -M viins 'kj' vi-cmd-mode\n
       bindkey -M viins 'jk' vi-cmd-mode\n
       VI_MODE_SET_CURSOR=true\n
       eval \"$(zoxide init zsh)\"\n
-      fetchnip\n
+      ~/nixdots/home/elric/pkgs/fetchnip\n
     ";
   };
 

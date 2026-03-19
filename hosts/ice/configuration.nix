@@ -7,14 +7,35 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./wpa.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  # Downgraded kernal due to driver issues with NVIDIA, like usual..
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
+  boot.kernelModules = [ "k10temp" "amd64_edac_mod" ];
+  boot.kernelParams = [ "numa_balancing=1" "nmi_watchdog=0" "nvidia-drm.modeset=1" ];
+  # Make compiling the os faster
+  security.tpm2.enable = false;
+
+  hardware.cpu.amd.updateMicrocode = true;
+
+  # Alt, "ondemand" & "performance"
+  powerManagement.cpuFreqGovernor = "schedutil";
 
   # Networking & Timezone
   time.timeZone = "Europe/Stockholm";
+  networking = {
+    wireless.iwd.enable = true;
+    hostName = "ice";
+    networkmanager = {
+      enable = true;
+      wifi = {
+        powersave = false;
+        scanRandMacAddress = false;
+      };
+    };
+  };
 
   # Set locale
   i18n.defaultLocale = "en_US.UTF-8";
@@ -24,9 +45,18 @@
   };
 
   # Enable bluetooth
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware = {
+    nvidia = {
+      nvidiaSettings = true;
+      open = true;
+      modesetting.enable = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+    };
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
   };
 
   # Enable sound.
@@ -46,20 +76,28 @@
   # Set environment variables
   environment.sessionVariables = {
     FLAKE = "/home/elric/nixdots/";
+    NH_FLAKE = "/home/elric/nixdots/";
     LIBVA_DRIVER_NAME = "iHD";
     DEFAULT_BROWSER = "${pkgs.brave}/bin/brave";
   };
 
-  environment.variables = { ROC_ENABLE_PRE_VEGA = "1"; };
+  environment.variables = { 
+    ROC_ENABLE_PRE_VEGA = "1";
+    WLR_NO_HARDWARE_CURSORS = "1";
+    WLR_RENDERER = "vulkan"; 
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    __GL_SYNC_TO_VBLANK = "0";
+  };
+
   hardware.opengl = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
     extraPackages = with pkgs; [
-        intel-compute-runtime
-        intel-media-driver
-        intel-vaapi-driver
-        opencl-headers
+      nvidia-vaapi-driver
+      intel-compute-runtime
+      intel-media-driver
+      intel-vaapi-driver
+      opencl-headers
     ];
   };
 
@@ -84,19 +122,28 @@
   # Pakagas
   environment.systemPackages = with pkgs; [
     xdg-utils
-    vaapiIntel
     vim 
     wget
     git
     git-crypt
     rustup
     gcc
-    iwd
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  programs.sway.enable = true;
 
-  system.stateVersion = "24.05";
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd 'sway --unsupported-gpu'";
+        user = "greeter";
+      };
+    };
+  };
+
+  programs.sway.enable = true;
+  
+  system.stateVersion = "25.11";
 }
 

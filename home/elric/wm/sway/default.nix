@@ -1,7 +1,10 @@
 {
   pkgs,
+  swayfx,
+  zen-browser,
   ...
-}: {
+}: 
+{
   imports = [
     ./fonts.nix
     ../../pkgs/rofi
@@ -9,45 +12,62 @@
     ../../pkgs/kitty
   ];
 
-  home.packages = with pkgs; [
-    swayfx
-    rofi-wayland
+  home.packages =  [
+    swayfx.packages.${pkgs.system}.default
+    pkgs.rofi
 
-    spotify
-    discord
-    kitty
-    qutebrowser
-    brave
+    pkgs.spotify
+    pkgs.discord
+    pkgs.kitty
+    zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
 
-    wf-recorder
-    wl-clipboard
-    grim
-    slurp
-    wlprop
+    pkgs.wf-recorder
+    pkgs.wl-clipboard
+    pkgs.grim
+    pkgs.slurp
+    pkgs.wlprop
 
-    eww
-    brightnessctl
-    playerctl
-    pamixer
-    libnotify
-    mako
+    pkgs.eww
+    pkgs.brightnessctl
+    pkgs.playerctl
+    pkgs.pamixer
+    pkgs.libnotify
+    pkgs.mako
 
     # Json parser for switch workspace script
-    jq
+    pkgs.jq
   ];
+
+
+  home.pointerCursor = {
+    name = "phinger-cursors-light";
+    package = pkgs.phinger-cursors;
+    size = 32;
+    gtk.enable = true;
+  };
 
   wayland.windowManager.sway = {
     enable = true;
+    # package = pkgs.swayfx;
+    package = swayfx.packages.${pkgs.system}.default;
     checkConfig = false;
-    package = pkgs.swayfx;
     config = {
       defaultWorkspace = "workspace number 1";
       modifier = "Mod4";
       terminal = "kitty";
       output = {
         "*" = {
-          # background = "~/.local/share/wallpapers/MOSHED-2025-10-19-1-20-23.jpg fill";
-          background = "~/Downloads/97582.jpg fill";
+          background = "~/.local/share/wallpapers/wp1.jpg fill";
+        };
+        "DP-1" = {
+          pos = "0 0";
+        };
+        "DP-3" = {
+          pos = "2560 0";
+          mode = "1920x1080@144Hz";
+        };
+        "HDMI-A-1" = {
+          pos = "0 1440";
         };
       };
       bars = [];
@@ -84,6 +104,9 @@
       input = {
         "*" = {
           xkb_layout = "se";
+        };
+        "type:pointer" = {
+          accel_profile = "flat";
         };
       };
       startup = [
@@ -163,13 +186,15 @@
         "XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
         "XF86MonBrightnessUp" =  "exec brightnessctl set 5%+";
 
-        "F9"  = "exec playerctl --player=spotify previous";
-        "F10" = "exec playerctl --player=spotify play-pause";
-        "F11" = "exec playerctl --player=spotify next";
+        "XF86AudioPrev"  = "exec playerctl --player=spotify previous";
+        "XF86AudioPlay" = "exec playerctl --player=spotify play-pause";
+        "XF86AudioNext" = "exec playerctl --player=spotify next";
       };
     };
     extraConfig = "
       default_border pixel 3\n
+      default_dim_inactive 0.1\n
+      animation_duration_ms 250\n
       for_window [class=\".*\"] opacity 0.90\n
       for_window [app_id=\".*\"] opacity 0.90\n
       for_window [app_id=\"floating\"] floating enable, resize set 1000 600\n

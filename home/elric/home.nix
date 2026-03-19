@@ -12,7 +12,7 @@
 
   home.username = "elric";
   home.homeDirectory = "/home/elric";
-  home.stateVersion = "24.05";
+  home.stateVersion = "25.11";
 
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -32,9 +32,9 @@
     unzip
     mpv
     ffmpeg
+    wiremix
 
     htop
-    powertop
     (writeShellScriptBin "fetchnip" ''
       exec $HOME/nixdots/home/$USER/pkgs/fetchnip "$@"
     '')
@@ -42,11 +42,6 @@
     # Development :O
     love
     aseprite
-    (python312.withPackages (p: 
-      with p; [
-      python312Packages.pygame-ce
-      python312Packages.python-lsp-server
-    ]))
 
     # Lsp's
     lua-language-server
@@ -57,7 +52,6 @@
     gnumake
 
     # Cool scripts
-    wpa_supplicant_gui
     yazi
     zscroll
     highlight
