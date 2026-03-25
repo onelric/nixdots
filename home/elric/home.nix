@@ -7,7 +7,8 @@
     ./pkgs/eza.nix
     ./pkgs/neovim
     ./pkgs/mako.nix
-    ./wm/sway
+    ./wm/niri
+    ./wm
   ];
 
   home.username = "elric";

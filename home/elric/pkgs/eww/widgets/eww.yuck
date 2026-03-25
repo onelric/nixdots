@@ -26,7 +26,7 @@
 
 (defpoll network-status :interval "2s" "./scripts/network_script.sh")
 (defpoll network-ssid :interval "10s" "./scripts/network_script.sh --ssid")
-(defpoll network-isconnected :interval "2s" "iwctl station wlan0 show 2>/dev/null | grep -q 'State *connected' && echo true || echo false")
+(defpoll network-isconnected :interval "2s" "nmcli -t -f DEVICE,STATE device status | grep -q '^wlp4s0:connected' && echo true || echo false")
 
 (include "./quick_menu/eww.yuck")
 (include "./notifications/eww.yuck")

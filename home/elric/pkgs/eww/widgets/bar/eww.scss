@@ -73,6 +73,20 @@
   // color: $blue;
 }
 
+.bar-playerctl-progress-scale trough {
+    all: unset;
+    background-color: $extradarkbg;
+    border-radius: $border-rad;
+    min-height: 3px;
+    min-width: 200px;
+    border-radius: 3px;
+}
+
+.bar-playerctl-progress-scale trough highlight {
+    background-color: $red;
+    border-radius: 3px;
+}
+
 .bar-volume-scale trough {
     all: unset;
     background-color: $extradarkbg;

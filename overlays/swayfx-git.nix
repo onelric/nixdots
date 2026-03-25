@@ -6,7 +6,7 @@ final: prev:
       owner = "WillPower3309";
       repo = "swayfx";
       rev = "master";
-      hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+      hash = "sha256-4A4DEMDxJgPbbszLVdnlhFsvQS73X91dANZN0wbrX6g=";
     };
   });
 }

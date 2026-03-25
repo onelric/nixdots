@@ -39,6 +39,7 @@
 
   # Set locale
   i18n.defaultLocale = "en_US.UTF-8";
+  services.xserver.xkb.layout = "se";
   console = {
     font = "Lat2-Terminus16";
     keyMap = "sv-latin1";
@@ -49,7 +50,7 @@
   hardware = {
     nvidia = {
       nvidiaSettings = true;
-      open = true;
+      open = false;
       modesetting.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
@@ -78,7 +79,7 @@
     FLAKE = "/home/elric/nixdots/";
     NH_FLAKE = "/home/elric/nixdots/";
     LIBVA_DRIVER_NAME = "iHD";
-    DEFAULT_BROWSER = "${pkgs.brave}/bin/brave";
+    XDG_CURRENT_DESKTOP = "niri";
   };
 
   environment.variables = { 
@@ -86,6 +87,7 @@
     WLR_NO_HARDWARE_CURSORS = "1";
     WLR_RENDERER = "vulkan"; 
     GBM_BACKEND = "nvidia-drm";
+    XDG_SESSION_TYPE = "wayland";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     __GL_SYNC_TO_VBLANK = "0";
   };
@@ -121,6 +123,7 @@
 
   # Pakagas
   environment.systemPackages = with pkgs; [
+    xkeyboard-config
     xdg-utils
     vim 
     wget
@@ -136,13 +139,16 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd 'sway --unsupported-gpu'";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd 'niri'";
+        # command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd 'sway --unsupported-gpu'";
         user = "greeter";
       };
     };
   };
 
-  programs.sway.enable = true;
+  programs.xwayland.enable= true;
+  programs.niri.enable = true;
+  # programs.sway.enable = true;
   
   system.stateVersion = "25.11";
 }

@@ -5,7 +5,7 @@
     enable = true;
     font = {
       name = "Maple Mono NF";
-      package = pkgs.maple-mono-SC-NF;
+      package = pkgs.maple-mono.NF;
       size = 10;
     };
     settings = {

@@ -1,31 +1,19 @@
 #!/bin/sh
 
-INTERFACE="wlan0"
+INTERFACE="wlp4s0"
 
-iwctl station "$INTERFACE" show 2>/dev/null | awk -v mode="$1" '
-/State/ { state=$2 }
-/Connected network/ { ssid=$3 }
-/RSSI/ { rssi=$2 }
+STATE=$(nmcli -t -f DEVICE,STATE device status | awk -F: -v i="$INTERFACE" '$1==i {print $2}')
 
-END {
-    if (mode == "--ssid") {
-        if (state == "connected")
-            print ssid
-        exit
-    }
+CONNECTED_ICON="󰤨"
+DISCONNECTED_ICON="󰤭"
 
-    if (state != "connected") {
-        print "󰤭"
-        exit
-    }
+if [ "$1" = "--ssid" ]; then
+    nmcli -t -f DEVICE,CONNECTION device status | awk -F: -v i="$INTERFACE" '$1==i {print $2}'
+    exit
+fi
 
-    if (rssi >= -50)
-        print "󰤨"
-    else if (rssi >= -60)
-        print "󰤥"
-    else if (rssi >= -70)
-        print "󰤢"
-    else
-        print "󰤟"
-}'
-
+if [ "$STATE" = "connected" ]; then
+    echo "$CONNECTED_ICON"
+else
+    echo "$DISCONNECTED_ICON"
+fi

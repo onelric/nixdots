@@ -1,54 +1,23 @@
 {
   pkgs,
   swayfx,
-  zen-browser,
   ...
 }: 
 {
   imports = [
-    ./fonts.nix
-    ../../pkgs/rofi
     ../../pkgs/eww
-    ../../pkgs/kitty
   ];
 
   home.packages =  [
-    swayfx.packages.${pkgs.system}.default
-    pkgs.rofi
-
-    pkgs.spotify
-    pkgs.discord
-    pkgs.kitty
-    zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-
-    pkgs.wf-recorder
+    swayfx.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.wl-clipboard
-    pkgs.grim
-    pkgs.slurp
+    pkgs.wf-recorder
     pkgs.wlprop
-
     pkgs.eww
-    pkgs.brightnessctl
-    pkgs.playerctl
-    pkgs.pamixer
-    pkgs.libnotify
-    pkgs.mako
-
-    # Json parser for switch workspace script
-    pkgs.jq
   ];
-
-
-  home.pointerCursor = {
-    name = "phinger-cursors-light";
-    package = pkgs.phinger-cursors;
-    size = 32;
-    gtk.enable = true;
-  };
 
   wayland.windowManager.sway = {
     enable = true;
-    # package = pkgs.swayfx;
     package = swayfx.packages.${pkgs.system}.default;
     checkConfig = false;
     config = {
@@ -213,8 +182,9 @@
 
       blur enable\n
       blur_radius 9\n
-      blur_noise 0.1\n
       corner_radius 10\n
     ";
+    # Blur noise adds an issue with obnoxious lines drawing 'round the edges of the windows
+    # blur_noise 0.1\n
   };
 }

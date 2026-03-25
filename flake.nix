@@ -6,6 +6,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     swayfx.url = "github:WillPower3309/swayfx";
+    niri.url = "github:niri-wm/niri/wip/branch";
     zen-browser.url = "github:youwen5/zen-browser-flake";
 
 
@@ -17,7 +18,7 @@
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager,
-             neovim-nightly-overlay, swayfx, zen-browser, 
+             neovim-nightly-overlay, swayfx, niri, zen-browser, 
   }@inputs: 
     let 
       system = "x86_64-linux";
@@ -45,6 +46,7 @@
                 inherit unstable; 
                 inherit swayfx; 
                 inherit zen-browser;
+                inherit niri;
               };
               home-manager.users.elric = import ./home/elric/home.nix;
             }

@@ -1,5 +1,5 @@
 (defwindow bar 
-        :monitor 0
+        :monitor "DP-1"
         :geometry (geometry :x "5px" :y "5px"
                             :width "99%" :height "38px"
                             :anchor "top center")
@@ -9,14 +9,29 @@
         (bar)
 )
 
+(defvar playerctl-clicked-open false)
 (defwidget playerctl[]
     (box :space-evenly "false" :orientation "h" :valign "center" :class "module"
-        (label :text "" :class "bar-player-icon")
-        (revealer :transition "slideleft" :reveal playerctl-isplaying :duration "250ms"
-            (box :space-evenly "false"
-                (label :text "${playerctl-title}" :class "playerctl-title-bar")
-                (label :text "~" :class "bar-player-seperator")
-                (label :text "${playerctl-artist}" :class "playerctl-artist-bar")
+        (button :onclick "eww update playerctl-clicked-open=$( [ \"$(eww get playerctl-clicked-open)\" = \"true\" ] && echo false || echo true )"
+            (label :text "" :class "bar-player-icon")
+        )
+
+        (revealer :transition "slideleft" :reveal playerctl-clicked-open :duration "250ms"
+            (box :orientation "v" :space-evenly false
+                (box :space-evenly "false"
+                    (label :text "${playerctl-title}" :class "playerctl-title-bar")
+                    (label :text "~" :class "bar-player-seperator")
+                    (label :text "${playerctl-artist}" :class "playerctl-artist-bar")
+                )
+
+                ;(scale 
+                ;    :class "bar-playerctl-progress-scale"
+                ;    :hexpand "true"
+                ;    :min "0" :max "101"
+                ;    :onchange "pamixer --set-volume {}"
+                ;    :halign "center"
+                ;    :valign "end"
+                ;    :value current-volume)
             )
         )
     )
@@ -92,7 +107,6 @@
 
         (box :class "left-modules" :halign "start" :space-evenly "false"
             (label :class "bar-control-centre" :text "")
-            (box :orientation "h" (info-collection))
             (box (sound))
         )
 
