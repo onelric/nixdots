@@ -1,37 +1,62 @@
 (defwindow bar 
-        :monitor "DP-1"
+        :monitor "eDP-1"
         :geometry (geometry :x "5px" :y "5px"
                             :width "99%" :height "38px"
                             :anchor "top center")
-        :stacking "bottom"
+        :windowtype "dock"
+        :stacking "fg"
         :exclusive true
         :focusable false
         (bar)
 )
 
 (defvar playerctl-clicked-open false)
+(defvar systray-clicked-open false)
+(defvar bar-stats-clicked-open false)
 (defwidget playerctl[]
     (box :space-evenly "false" :orientation "h" :valign "center" :class "module"
-        (button :onclick "eww update playerctl-clicked-open=$( [ \"$(eww get playerctl-clicked-open)\" = \"true\" ] && echo false || echo true )"
-            (label :text "" :class "bar-player-icon")
+        (box :space-evenly "false" :orientation "h" :valign "center" :class "module"
+            (button 
+                    :onclick "eww update playerctl-clicked-open=$( [ \"$(eww get playerctl-clicked-open)\" = \"true\" ] && echo false || echo true )"
+                (label :text "" :class "bar-player-icon")
+            )
+
+            (revealer :transition "slideleft" :reveal playerctl-clicked-open :duration "250ms"
+                (box :orientation "v" :space-evenly false
+                    (box :space-evenly "false"
+                        (label
+                            :text { playerctl-isplaying == "true"
+                                ? "${playerctl-title} ~ ${playerctl-artist}"
+                                : "no music is playing"
+                            }
+                            :class "playerctl-title-bar"
+                        )
+                    )
+                )
+            )
         )
 
-        (revealer :transition "slideleft" :reveal playerctl-clicked-open :duration "250ms"
-            (box :orientation "v" :space-evenly false
-                (box :space-evenly "false"
-                    (label :text "${playerctl-title}" :class "playerctl-title-bar")
-                    (label :text "~" :class "bar-player-seperator")
-                    (label :text "${playerctl-artist}" :class "playerctl-artist-bar")
-                )
+        (box :space-evenly "false" :orientation "h" :valign "center" :class "module"
+            (button 
+                    :onclick "eww update bar-stats-clicked-open=$( [ \"$(eww get bar-stats-clicked-open)\" = \"true\" ] && echo false || echo true )"
+                (label :text "󰒓" :class "bar-player-icon")
+            )
 
-                ;(scale 
-                ;    :class "bar-playerctl-progress-scale"
-                ;    :hexpand "true"
-                ;    :min "0" :max "101"
-                ;    :onchange "pamixer --set-volume {}"
-                ;    :halign "center"
-                ;    :valign "end"
-                ;    :value current-volume)
+            (revealer :transition "slideright" :reveal bar-stats-clicked-open :duration "250ms"
+                (box :orientation "h" :space-evenly false
+                        (label :text "  ${cpu-temp},   ${cpu-avg},   ${ram-usage}")
+                )
+            )
+        )
+
+        (box :space-evenly "false" :orientation "h" :valign "center" :class "module"
+            (button 
+                    :onclick "eww update systray-clicked-open=$( [ \"$(eww get systray-clicked-open)\" = \"true\" ] && echo false || echo true )"
+                (label :text "󰀻" :class "bar-player-icon")
+            )
+
+            (revealer :transition "slideright" :reveal systray-clicked-open :duration "250ms"
+                (systray :icon-size 16)
             )
         )
     )
@@ -71,27 +96,31 @@
             :class "bar-circle-progress-battery"
             :hexpand true
             :vexpand true
-            :thickness 3
+            :thickness 2.5
             :start-at 25
+            :width 15
             :value current-battery  
-            (label :class "bar-circle-progress-label" :text "•")
+            (label :class "bar-circle-progress-label" :text "  ")
         )
+        (label :class "bar-circle-progress-label" :text "${current-battery}%")
         (circular-progress 
             :class "bar-circle-progress-brightness"
             :hexpand true
             :vexpand true
-            :thickness 3
+            :thickness 2.5
             :start-at 25
+            :width 15
             :value current-brightness  
-            (label :class "bar-circle-progress-label" :text "•")
+            (label :class "bar-circle-progress-label" :text "  ")
         )
+        (label :class "bar-circle-progress-label" :text "${current-brightness}%")
     )
 )
 
 
 
 (defwidget wifi[]
-    (box :orientation "h" :space-evenly "false" :valign "center" :class "module"
+    (box :orientation "h" :space-evenly false :valign "center" :class "module"
         (label :class "bar-network-icon" :text network-status)
 
         (revealer :transition "slideleft" :reveal network-isconnected :duration "250ms"
@@ -101,12 +130,15 @@
 )
 
 (defwidget bar[]
-    (box :space-evenly "true"
+    (centerbox
         :orientation "h"
         :class "bar"
 
         (box :class "left-modules" :halign "start" :space-evenly "false"
-            (label :class "bar-control-centre" :text "")
+            (button :onclick "eww open power_menu --toggle"
+                (label :class "bar-control-centre" :text "")
+            )
+            (box (info-collection))
             (box (sound))
         )
 

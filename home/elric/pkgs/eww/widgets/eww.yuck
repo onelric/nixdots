@@ -1,5 +1,9 @@
-(defpoll USERNAME :interval "5s" "whoami")
-(defpoll HOST     :interval "5s" "hostname")
+(defvar USERNAME "whoami")
+(defvar HOST     "hostname")
+
+(defpoll  cpu-temp  :interval "5s" "./scripts/get_cpu_temp.sh")
+(defpoll  cpu-avg   :interval "5s" "./scripts/get_cpu_avg.sh")
+(defpoll  ram-usage :interval "20s" "./scripts/get_ram_usage.sh")
 
 (defpoll hour   :interval "1s" "date '+%H'")
 (defpoll min    :interval "1s" "date '+%M'")
@@ -26,8 +30,9 @@
 
 (defpoll network-status :interval "2s" "./scripts/network_script.sh")
 (defpoll network-ssid :interval "10s" "./scripts/network_script.sh --ssid")
-(defpoll network-isconnected :interval "2s" "nmcli -t -f DEVICE,STATE device status | grep -q '^wlp4s0:connected' && echo true || echo false")
+(defpoll network-isconnected :interval "2s" "nmcli -t -f DEVICE,STATE device status | grep -q '^wlp0s20f3:connected' && echo true || echo false")
 
 (include "./quick_menu/eww.yuck")
 (include "./notifications/eww.yuck")
 (include "./bar/eww.yuck")
+(include "./power_menu/eww.yuck")

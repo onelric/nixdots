@@ -1,0 +1,43 @@
+(defwindow power_menu
+    :monitor 0
+    :geometry (geometry :x "12px" :y "20px"
+                        :anchor "top left")
+    :stacking "overlay"
+    (power_widget)
+)
+
+
+(defwidget power_widget[]
+    (eventbox :onhoverlost "eww open power_menu --toggle"
+        (box :orientation "v" :class "pm-widget" :space-evenly "false"
+            (label :halign "center" :text "Power Menu" :class "pm-title")
+
+            (box :class "pm-button-box" :orientation "v" :spacing 5 :space-evenly "false"
+                (button 
+                    :class "pm-reboot-button"
+                    :onclick "sh ~/nixdots/home/elric/pkgs/kitty/sessions/launch_yazi.sh"
+                    (box :space-evenly "false"
+                        (label :text "" :class "pm-reboot-icon")
+                        (label :text "reboot" :class "pm-reboot-label")
+                    )
+                )
+                (button 
+                    :class "pm-logout-button"
+                    :onclick "sh 'pkill niri'"
+                    (box :space-evenly "false"
+                        (label :text "" :class "pm-logout-icon")
+                        (label :text "logout" :class "pm-logout-label")
+                    )
+                )
+                (button 
+                    :class "pm-shutdown-button"
+                    :onclick "sh ~/nixdots/home/elric/pkgs/kitty/sessions/shutdown.sh"
+                    (box :space-evenly "false"
+                        (label :text "" :class "pm-shutdown-icon")
+                        (label :text "shutdown" :class "pm-shutdown-label")
+                    )
+                )
+            )
+        )
+    )
+)

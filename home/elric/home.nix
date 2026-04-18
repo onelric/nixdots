@@ -17,6 +17,7 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    XDG_CONFIG_HOME = "/home/elric/.config";
   };
 
   fonts.fontconfig.enable = true;
@@ -34,8 +35,9 @@
     mpv
     ffmpeg
     wiremix
+    fastfetch
 
-    htop
+    btop
     (writeShellScriptBin "fetchnip" ''
       exec $HOME/nixdots/home/$USER/pkgs/fetchnip "$@"
     '')
@@ -51,6 +53,7 @@
     clang
     clang-tools
     gnumake
+    nixd
 
     # Cool scripts
     yazi

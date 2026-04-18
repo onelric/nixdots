@@ -6,9 +6,8 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     swayfx.url = "github:WillPower3309/swayfx";
-    niri.url = "github:niri-wm/niri/wip/branch";
+    niri-wip.url = "github:niri-wm/niri/wip/branch";
     zen-browser.url = "github:youwen5/zen-browser-flake";
-
 
     # Home manager
     home-manager = {
@@ -18,7 +17,7 @@
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager,
-             neovim-nightly-overlay, swayfx, niri, zen-browser, 
+             neovim-nightly-overlay, swayfx, niri-wip, zen-browser, 
   }@inputs: 
     let 
       system = "x86_64-linux";
@@ -31,25 +30,46 @@
 
       pkgs = import nixpkgs {
         system = system;
+        # overlays = [
+          # (import ./overlays/swaybg-overlay.nix)
+        # ];
       };
     in{
       nixosConfigurations = {
-        ice = nixpkgs.lib.nixosSystem {
+        snow = nixpkgs.lib.nixosSystem {
           inherit system;
+          specialArgs = {
+            inherit inputs;
+          };
           modules = [
-            ./hosts/ice/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-                # home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { 
-                inherit unstable; 
-                inherit swayfx; 
-                inherit zen-browser;
-                inherit niri;
-              };
-              home-manager.users.elric = import ./home/elric/home.nix;
-            }
+            ./hosts/snow/configuration.nix
+            # home-manager.nixosModules.home-manager
+            # {
+              # # home-manager.useGlobalPkgs = true;
+              # home-manager.useUserPackages = true;
+              # home-manager.extraSpecialArgs = { 
+                # inherit unstable; 
+                # inherit swayfx; 
+                # inherit zen-browser;
+                # inherit niri;
+              # };
+              # home-manager.users.elric = import ./home/elric/home.nix;
+            # }
+          ];
+        };
+      };
+
+      homeConfigurations = {
+        elric = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit unstable;
+            inherit swayfx;
+            inherit niri-wip;
+            inherit zen-browser;
+          };
+          modules = [
+            ./home/elric/home.nix
           ];
         };
       };

@@ -1,7 +1,7 @@
 * {
     font: "MapleMono NF 10";
 
-    background: #151515DD;
+    background: #151515;
     foreground: #e8e3e3;
     red:        #b66467;
     yellow:     #d9bc8c;
@@ -38,12 +38,13 @@ listview {
 }
 
 window {
-    transparency: "real";
+    // transparency: "real";
     width: 385px;
     background-color: @bg-color;
-    border: 0px solid;
+    border: 3px solid;
+    border-color: #111111;
     padding: @window-padding;
-    border-radius: 10px;
+    border-radius: 25px;
 }
 
 prompt {

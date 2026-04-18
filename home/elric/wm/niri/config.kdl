@@ -1,14 +1,14 @@
 input {
     keyboard {
         xkb {
-            // layout "sv-latin1"
             layout "se"
         }
         numlock
     }
 
     touchpad {
-        off
+        tap
+        natural-scroll
     }
 
     mouse {
@@ -21,27 +21,11 @@ input {
     focus-follows-mouse max-scroll-amount="0%"
 }
 
-output "DP-1" {
-    mode "2560x1440@144.000"
-    transform "normal"
-    position x=0 y=0
-}
-
-output "DP-3" {
-    mode "1920x1080@144.001"
-    transform "normal"
-    position x=2560 y=0
-}
-
-output "HDMI-A-1" {
-    mode "1920x1080@50.000"
-    transform "normal"
-    position x=0 y=1440
+output "eDP-1" {
+    scale 1.0
 }
 
 layout {
-    background-color "transparent"
-
     center-focused-column "never"
     preset-column-widths {
         proportion 0.33333
@@ -79,53 +63,63 @@ layout {
 }
 
 spawn-sh-at-startup "eww daemon"
-spawn-sh-at-startup "eww --force-wayland open bar"
 spawn-sh-at-startup "mako"
-spawn-sh-at-startup "swaybg -i ~/.local/share/wallpapers/wp1.jpg"
+spawn-sh-at-startup "eww --force-wayland open bar"
+spawn-sh-at-startup "swaybg --namespace \"backdrop\" -i ~/.local/share/wallpapers/97582_blurred.jpg"
+spawn-sh-at-startup "swaybg -i ~/.local/share/wallpapers/97582.jpg"
 
-screenshot-path "~/ from %Y-%m-%d %H-%M-%S.png"
+screenshot-path "~/Pictures/Screenshots/screenshot-%Y-%m-%d %H-%M-%S.png"
 
 prefer-no-csd
 
-blur {
-    noise 0.22
-    saturation 1.2
-}
+// blur {
+    // noise 0.22
+    // saturation 1.2
+// }
 
 window-rule {
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id=r#"zen$"# title="^Picture-in-Picture$"
     open-floating true
-}
-
-window-rule {
-    opacity 0.95
-    background-effect {
-        blur true
-    }
-}
-
-window-rule {
-    match app-id=r#"zen$"#
-    opacity 0.95
-    background-effect {
-        blur true
-    }
 }
 
 window-rule {
     geometry-corner-radius 10
     clip-to-geometry true
+    // opacity 0.95
+    // background-effect {
+        // blur true
+    // }
 }
 
 layer-rule {
+    match namespace="^rofi$"
+    geometry-corner-radius 27 27 27 27
+    // opacity 0.95
+    // background-effect {
+        // blur true
+    // }
+}
+
+layer-rule {
+    match namespace="^gtk-layer-shell$"
+    geometry-corner-radius 10 10 10 10
+    // opacity 0.95
+    // background-effect {
+        // blur true
+    // }
+}
+
+layer-rule {
+    match namespace="^backdrop$"
     place-within-backdrop true
 }
 
 overview {
-  workspace-shadow {
-    off
-  }
+    workspace-shadow {
+        on
+    }
 }
+
 
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }

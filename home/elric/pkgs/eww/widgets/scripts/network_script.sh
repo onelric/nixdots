@@ -1,6 +1,6 @@
 #!/bin/sh
 
-INTERFACE="wlp4s0"
+INTERFACE="wlp0s20f3"
 
 STATE=$(nmcli -t -f DEVICE,STATE device status | awk -F: -v i="$INTERFACE" '$1==i {print $2}')
 

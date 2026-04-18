@@ -1,13 +1,15 @@
 * {
   font-family: "Maple Mono NF";
   font-size: 13px;
+  font-style: italic;
 }
 
 .bar {
   background: $darkbg;
-  // box-shadow: 4px 4px 15px #00000080;
-  // margin-right: 9px;
-  // margin-bottom: 9px;
+  border: 3px solid;
+  border-color: #111111;
+  // Temporarily disabling rounder corners because Niri-WM is bugged.. how fun
+  // border-radius: 8px;
 }
 
 .module {
@@ -52,9 +54,9 @@
 }
 
 .bar-circle-progress-label {
-  font-size: 10px;
+  font-style: italic;
   padding: 4px;
-  color: $bg;
+  color: $fg;
 }
 
 .playerctl-artist-bar {
@@ -71,6 +73,7 @@
 .playerctl-title-bar {
   min-width: 135px;
   // color: $blue;
+  font-style: italic;
 }
 
 .bar-playerctl-progress-scale trough {

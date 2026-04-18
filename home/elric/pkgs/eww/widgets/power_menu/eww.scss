@@ -1,0 +1,41 @@
+.pm-widget {
+  background-color: $darkbg;
+  border-radius: 8px;
+  border: 3px solid;
+  border-color: $extradarkbg;
+  padding: 20px;
+}
+
+.pm-logout-icon {
+  color: $blue;
+  font-size: 14;
+}
+
+.pm-reboot-icon {
+  color: $green;
+  font-size: 16px;
+}
+
+.pm-shutdown-icon {
+  color: $red;
+  font-size: 15px;
+}
+
+.pm-shutdown-icon, .pm-reboot-icon, .pm-logout-icon {
+  padding-left: 5px;
+}
+
+.pm-shutdown-label, .pm-reboot-label, .pm-logout-label {
+  margin-left: 60px;
+}
+
+.pm-shutdown-button, .pm-reboot-button, .pm-logout-button {
+  padding: 8px;
+}
+
+.pm-title {
+  padding-top: 4px;
+  padding-bottom: 14px;
+  font-size: 16px;
+  font-style: italic;
+}
